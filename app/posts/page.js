@@ -1,7 +1,7 @@
 import BackButton from "@/components/BackButton";
 import List from "@/components/List";
 
-const getPostsService = async ()=>{
+const getPostsService = async () => {
     const res = await fetch('http://localhost:4000/posts')
     const posts = await res.json()
     return posts
@@ -9,6 +9,13 @@ const getPostsService = async ()=>{
 
 const posts = async () => {
     const posts = await getPostsService()
+
+    async function create() {
+        'use server'
+
+        //...
+    }
+
     return (
         <div className='mt-4 px-4'>
             <h1 className="text-cyan-100">پست ها</h1>
