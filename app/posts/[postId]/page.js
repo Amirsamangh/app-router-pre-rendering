@@ -1,17 +1,21 @@
 const { default: BackButton } = require("@/components/BackButton")
 
-const getPostService = async (postId) => {
-    const res = await fetch(`http://localhost:4000/posts/${postId}`)
-    const post = await res.json()
-    return post
-}
-
 export const generateStaticParams = async () => {
     return [
         { postId: '1' },
         { postId: '2' },
         { postId: '3' },
     ]
+}
+
+const getPostService = async (postId) => {
+    const res = await fetch(`http://localhost:4000/posts/${postId}` , {
+        next: {
+            revalidate: 20
+        }
+    })
+    const post = await res.json()
+    return post
 }
 
 const postId = async ({ params }) => {
