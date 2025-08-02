@@ -1,6 +1,7 @@
 
 import BackButton from "@/components/BackButton";
 import List from "@/components/List";
+import { revalidatePath } from "next/cache";
 
 export const handleGetUsers = async () => {
     const res = await fetch('http://localhost:4000/users?_sort=id&_order=desc')
@@ -16,7 +17,7 @@ const users = async () => {
 
         const name = formdata.get('name')
         const email = formdata.get('email')
-        const res = await fetch('http://localhost:4000/users', {
+        const res = await fetch('http://localhost:4000/users?_sort=id&_order=desc', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -26,11 +27,16 @@ const users = async () => {
                 email,
             })
         })
+        console.log(res.status);
+        
+        // if(res.status === 200) {
+            revalidatePath('/users')
+        // }
     }
 
     return (
         <div className='mt-4 px-4'>
-            <h1 className="text-cyan-100">پست ها</h1>
+            <h1 className="text-cyan-100">کاربر ها</h1>
             <BackButton />
             <br />
             <br />

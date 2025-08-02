@@ -1,5 +1,7 @@
 'use server'
 
-export async function create() {
-    //...
+import { revalidateTag } from "next/cache"
+
+export async function handleUpdateTag(tag) {
+    revalidateTag(tag)
 }

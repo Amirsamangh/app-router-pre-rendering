@@ -1,4 +1,5 @@
 import BackButton from "@/components/BackButton"
+import UpdateData from "@/components/UpdateData"
 
 
 export const generateStaticParams = async ()=>{
@@ -10,7 +11,7 @@ export const generateStaticParams = async ()=>{
 }
 
 export const getUserService = async (userId)=>{
-    const res = await fetch(`http://localhost:4000/posts/${userId}`)
+    const res = await fetch(`http://localhost:4000/users/${userId}`)
     const user = await res.json()
     return user;
 }
@@ -21,6 +22,7 @@ const page = async ({params})=>{
     return (
         <div className="relative overflow-x-auto mt-20 mx-5">
             <BackButton />
+            <UpdateData path={`/users/${params.userId}`} />
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -28,13 +30,13 @@ const page = async ({params})=>{
                             #
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            title
+                            name
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            body
+                            email
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            userId
+                            phone
                         </th>
                     </tr>
                 </thead>
@@ -44,13 +46,13 @@ const page = async ({params})=>{
                             {user.id}
                         </td>
                         <td className="px-6 py-4">
-                            {user.title}
+                            {user.name}
                         </td>
                         <td className="px-6 py-4">
-                            {user.body}
+                            {user.email}
                         </td>
                         <td className="px-6 py-4">
-                            {user.userId}
+                            {user.phone}
                         </td>
                     </tr>
                 </tbody>

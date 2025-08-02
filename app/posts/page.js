@@ -1,12 +1,9 @@
 import BackButton from "@/components/BackButton";
 import List from "@/components/List";
+import UpdatePostsButton from "@/components/UpdatePostsButton";
 
 const getPostsService = async () => {
-    const res = await fetch('http://localhost:4000/posts', {
-        next: {
-            revalidate: 10,
-        }
-    })
+    const res = await fetch('http://localhost:4000/posts', {next: {tags:['allposts']}})
     const posts = await res.json()
     return posts
 }
@@ -26,6 +23,7 @@ const posts = async () => {
             <BackButton />
             <br />
             <br />
+            <UpdatePostsButton tag={'allposts'} />
             <ul className="w-full text-sm font-medium border border-gray-200 rounded-lg shadow-lg bg-cyan-950 text-cyan-300">
                 {posts.map(p => (
                     <List key={p.id} href={`/posts/${p.id}`} title={`${p.id}. ${p.title}`} />
