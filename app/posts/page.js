@@ -28,7 +28,7 @@ const posts = async () => {
             <br />
             <ul className="w-full text-sm font-medium border border-gray-200 rounded-lg shadow-lg bg-cyan-950 text-cyan-300">
                 {posts.map(p => (
-                    <List key={p.id} href={`/posts/${p.id}`} title={`${p.id} ${p.title}`} />
+                    <List key={p.id} href={`/posts/${p.id}`} title={`${p.id}. ${p.title}`} />
                     // <li
                     //     key={p.id}
                     //     onClick={() => route.push(`/posts/${p.id}`)}
