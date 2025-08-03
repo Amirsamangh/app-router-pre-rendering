@@ -6,6 +6,7 @@ export default function Home() {
       <List href={'/posts'} title={'پست ها'} />
       <List href={'/fposts'} title={'پست های فیلتر شده'} />
       <List href={'/users'} title={'کاربر ها'} />
+      <List href={'/usersNoStore'} title={'کاربر ها 2'} />
       <List href={'/admin'} title={'پنل ادمین'} />
     </div>
   );
